@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.barunsw.websample.vo.AddressVo;
 
+
 @Controller
 public class SampleController {
 	private static final Logger LOGGER = LogManager.getLogger(SampleController.class);
