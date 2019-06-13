@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<items>
+    <item type="settings"  inputWidth="220"  position="label-left"
+    labelWidth="70"/>
+
+    <item type="input"  label="Name"  name="Name"    offsetLeft="15"/>
+    <item type="input"  label="Age"   name="Age"    offsetLeft="15"/>
+    <item type="input"  label="Address"       name="Address"    offsetLeft="15"/>
+    <item type="button" name="update" value="Update"  offsetTop="15" offsetLeft="230" />
+    <item type="button" name="save"   value="Save"  offsetTop="15"  offsetLeft="230"/>
+</items>

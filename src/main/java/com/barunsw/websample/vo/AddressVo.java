@@ -30,9 +30,11 @@ public class AddressVo {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
+
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this);
+		return "AddressVo [name=" + name + ", age=" + age + ", address=" + address + "]";
 	}
+	
+	
 }

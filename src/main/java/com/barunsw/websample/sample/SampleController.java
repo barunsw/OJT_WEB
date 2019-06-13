@@ -32,7 +32,7 @@ public class SampleController {
 
 		List<AddressVo> addressList = null;
 		try {
-			addressList = sampleService.selectList(addressVo);	
+			addressList = sampleService.selectList();	
 		}
 		catch (Exception ex) {
 			LOGGER.error(ex.getMessage(), ex);
