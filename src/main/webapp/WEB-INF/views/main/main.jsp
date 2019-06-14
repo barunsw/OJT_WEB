@@ -23,25 +23,29 @@
 <body>
   <script type="text/javascript">
       dhtmlxEvent(window, "load", function(){
-    	
+    	function ajax(type,url,data){
+    		
+    	}
         var layout = new dhtmlXLayoutObject(document.body, "2U");
         var rowData;
         var contactsGrid = layout.cells("a").attachGrid();
       	var Name, Age, Address;
-        contactsGrid.attachHeader("#text_filter,#text_filter,#text_filter");
+      	var rowId;
+      	var rowIndex;
+        contactsGrid.attachHeader("#text_filter,#text_filter,#text_filter,#text_filter");
 
-        contactsGrid.setHeader("Name, Age, Address");
-        contactsGrid.setColumnIds("Name,Age,Address");
+        contactsGrid.setHeader("Seq,Name, Age, Address");
+        contactsGrid.setColumnIds("Seq,Name,Age,Address");
         contactsGrid.setInitWidths("250,250,*");
-        contactsGrid.setColAlign("left,left,left");
-        contactsGrid.setColTypes("ro,ro,ro");
-        contactsGrid.setColSorting("str,str,str");
+        contactsGrid.setColAlign("left,left,left,left");
+        contactsGrid.setColTypes("ro,ro,ro,ro");
+        contactsGrid.setColSorting("str,str,str,str");
         contactsGrid.init();
         contactsGrid.attachEvent("onRowSelect",function(id,ind){
         	console.log(id);
         	console.log(ind);
-        	var rowId    = contactsGrid.getSelectedRowId();
-            var rowIndex = contactsGrid.getRowIndex(rowId);
+        	rowId    = contactsGrid.getSelectedRowId();
+            rowIndex = contactsGrid.getRowIndex(rowId);
             rowData = contactsGrid.getRowData(rowId);
             console.log(rowData.NAME)
            
@@ -49,10 +53,10 @@
         });
         var listSize = ${list.size()};
   
-     	<c:forEach items="${list}" var="list">
-	        var rowId = contactsGrid.uid();
-	        var pos = contactsGrid.getRowsNum();
-	        contactsGrid.addRow(rowId, ["${list.name}", "${list.age}", "${list.address}"],pos);
+     	<c:forEach items="${list}" var="list" varStatus="status">
+	        rowId = contactsGrid.uid();
+	        pos = contactsGrid.getRowsNum();
+	        contactsGrid.addRow(rowId, ["${status.count}","${list.name}", "${list.age}", "${list.address}"],pos);
      	</c:forEach>
 
         layout.cells("a").setText("Contacts");
@@ -72,11 +76,10 @@
 
         toolbar.attachEvent("onClick",function(id){
           if (id == "delContact") {
-            var rowId    = contactsGrid.getSelectedRowId();
-            var rowIndex = contactsGrid.getRowIndex(rowId);
+            rowId    = contactsGrid.getSelectedRowId();
+            rowIndex = contactsGrid.getRowIndex(rowId);
 			console.log(toolbar.getItemText(id));
 			console.log(rowData);
-
 			$.ajax({
 				type:"post",
 				url:"/delete",
@@ -107,15 +110,14 @@
         Name		= contactForm.getItemValue("Name");
         Age  		= contactForm.getItemValue("Age");
         Address     = contactForm.getItemValue("Address");
-     	console.log(name);
         console.log("Name : " + Name);
         console.log("Age : " + Age);
         console.log("Address : " + Address);
         if (name == "save") {
-	        var rowId = contactsGrid.uid();
-	        var pos = contactsGrid.getRowsNum();
+	        rowId = contactsGrid.uid();
+	        pos = contactsGrid.getRowsNum();
 			
-	        contactsGrid.addRow(rowId, [Name, Age, Address],pos);
+	        contactsGrid.addRow(rowId, [listSize+1,Name, Age, Address],pos);
 	        $.ajax({
 	        	url:"/insert",
 	        	type:"post",
@@ -136,7 +138,7 @@
         if (name == "update") {
         	var rowId = contactsGrid.getSelectedRowId();
         	console.log("rowId"+rowId);
-        	contactsGrid.setRowData(rowId,{"Name":Name,"Age":Age,"Address":Address});
+        	contactsGrid.setRowData(rowId,{"Seq":"","Name":Name,"Age":Age,"Address":Address});
         	$.ajax({
         		url:"/update",
         		type:"post",
