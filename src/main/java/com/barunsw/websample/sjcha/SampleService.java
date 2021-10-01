@@ -16,4 +16,16 @@ public class SampleService {
 	public List<AddressVo> selectList() throws Exception {
 		return sampleDao.selectList();
 	}
+
+	public int insertAddress(AddressVo addressVo) throws Exception {
+		return sampleDao.insertAddress(addressVo);
+	}
+
+	public int updateAddress(AddressVo addressVo) throws Exception {
+		return sampleDao.updateAddress(addressVo);
+	}
+
+	public int deleteAddress(AddressVo addressVo) throws Exception {
+		return sampleDao.deleteAddress(addressVo);
+	}
 }

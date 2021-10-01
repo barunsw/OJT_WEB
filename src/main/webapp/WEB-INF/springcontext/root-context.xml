@@ -19,7 +19,7 @@
 	</context:component-scan>
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<context:property-placeholder location="classpath:db.properties"/>
+	<context:property-placeholder location="classpath:sjcha.properties"/>
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 
@@ -27,7 +27,7 @@
 		<property name="driverClassName" value="${driver}"/>
 		<property name="url" value="${url}"/>
 		<property name="username" value="root"/>
-		<property name="password" value="&amp;YOUha6644"/>
+		<property name="password" value="${password}"/>
 		<!-- <property name="validationQuery" value="${db.validation.query}"/> -->
 	</bean>
 	

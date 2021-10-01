@@ -7,5 +7,5 @@
     <item type="input"  label="Age"   name="Age"    offsetLeft="15"/>
     <item type="input"  label="Address"       name="Address"    offsetLeft="15"/>
     <item type="button" name="update" value="Update"  offsetTop="15" offsetLeft="230" />
-    <item type="button" name="save"   value="Save"  offsetTop="15"  offsetLeft="230"/>
+    <item type="button" name="save"   value="Save"  offsetTop="15"  offsetLeft="240"/>
 </items>
