@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.barunsw.websample.sjcha.SampleDao">
+	<select id="selectList" resultType="com.barunsw.websample.vo.AddressVo">
+  		SELECT 
+  			NAME, AGE, ADDRESS 
+  		FROM 
+  			TB_ADDRESSBOOK
+  	</select>
+
+	<insert id="insertAddress" parameterType="com.barunsw.websample.vo.AddressVo">
+		INSERT INTO TB_ADDRESSBOOK (
+			NAME, 
+			AGE,
+			ADDRESS
+		)
+		VALUES (
+			#{name}, 
+			#{age}, 
+			#{address}
+		)
+	</insert>
+
+	<update id="updateAddress" parameterType="com.barunsw.websample.vo.AddressVo">
+		UPDATE TB_ADDRESSBOOK SET
+			AGE = #{age},
+			ADDRESS = #{address}
+		WHERE 
+			NAME = #{name}
+	</update>
+	
+	<delete id="deleteAddress" parameterType="com.barunsw.websample.vo.AddressVo">
+		DELETE
+			FROM TB_ADDRESSBOOK
+		WHERE
+			NAME = #{name}
+	</delete>
+</mapper>
